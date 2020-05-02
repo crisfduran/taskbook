@@ -67,7 +67,8 @@ function taskbook_remove_capabilites() {
 
     $manager_roles = array( 'administrator' );
 
-    foreach ($manager_roles as $the_role) {
+    foreach ( $manager_roles as $the_role ) {
+        $role = get_role( $the_role );
         $role->remove_cap( 'read' );
         $role->remove_cap( 'edit_tasks' );
         $role->remove_cap( 'publish_tasks' );

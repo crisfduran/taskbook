@@ -49,7 +49,7 @@ function taskbook_cpt_init() {
         'show_in_menu'       => true,
         'query_var'          => true,
         'rewrite'            => array( 'slug' => 'tasks' ),
-        'capability_type'    => 'post',
+        'capability_type'    => 'task',
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
@@ -57,6 +57,7 @@ function taskbook_cpt_init() {
         'show_in_rest'       => true,
         'rest_base'          => 'tasks',
         'supports'           => array( 'title', 'editor', 'author' ),
+        'map_meta_cap'       => true,
     );
  
     register_post_type( 'task', $args );
