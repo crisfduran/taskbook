@@ -9,24 +9,23 @@
  * @link     https://developer.wordpress.org/reference/functions/register_rest_field/
  */
 
+add_action( 'rest_after_insert_task', 'taskbook_change_status', 10, 2 );
+
 add_action( 'rest_api_init', 'taskbook_register_task_status' );
  
 function taskbook_register_task_status() {
  
     register_rest_field(
          'task', 
-         'post-meta-fields', 
+         'task_status', 
          array(
-           'get_callback'    => 'get_post_meta_for_api',
+           'get_callback'    => 'taskbook_get_task_status',
            'schema'          => null,
         )
     );
 }
  
-function get_post_meta_for_api( $object ) {
-    //get the id of the post object array
-    $post_id = $object['id'];
- 
+function taskbook_get_task_status( $object, $field_name, $request ) { 
     //return the post meta
-    return get_post_meta( $post_id );
+    return get_post_meta( $object['id'], $field_name, true );
 }
