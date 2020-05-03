@@ -4,16 +4,17 @@
  *
  * Called from taskbook.php.
  * 
- * @package  Tasktask
+ * @package  Taskbook
  * @link     https://developer.wordpress.org/plugins/post-types/registering-custom-post-types/
  */
+
 
 /**
  * Register a custom post type called "task".
  *
  * @see get_post_type_labels() for label keys.
  */
-function taskbook_cpt_init() {
+ function taskbook_cpt_init() {
     $labels = array(
         'name'                  => _x( 'Tasks', 'Post type general name', 'taskbook' ),
         'singular_name'         => _x( 'Task', 'Post type singular name', 'taskbook' ),
@@ -53,7 +54,7 @@ function taskbook_cpt_init() {
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
-        'menu-icon'          => 'dashicons-excerpt-view',
+        'menu_icon'          => 'dashicons-exerpt-view',
         'show_in_rest'       => true,
         'rest_base'          => 'tasks',
         'supports'           => array( 'title', 'editor', 'author' ),
@@ -65,9 +66,14 @@ function taskbook_cpt_init() {
  
 add_action( 'init', 'taskbook_cpt_init' );
 
- 
-function tasbook_rewrite_flush() {
+
+function taskbook_rewrite_flush() {
+    // First, we "add" the custom post type via the above written function.
+    // Note: "add" is written with quotes, as CPTs don't get added to the DB,
+    // They are only referenced in the post_type column with a post entry, 
+    // when you add a post of this CPT.
     taskbook_cpt_init();
+ 
     // ATTENTION: This is *only* done during plugin activation hook in this example!
     // You should *NEVER EVER* do this on every page load!!
     flush_rewrite_rules();

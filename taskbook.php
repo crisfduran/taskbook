@@ -1,11 +1,10 @@
 <?php
 /*
 Plugin Name: Task Book
-Plugin URI:  https://crisduran.se
 Description: Track stress and anxiety levels around tasks.
 Version:     1.0.0
 Author:      Cris Duran
-Author URI:  https://crisduran.se
+Author URI:  crisduran.se
 Text Domain: taskbook
 Domain Path: /languages
 License:     GPL3
@@ -38,11 +37,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/roles.php';
 register_activation_hook( __FILE__, 'taskbook_register_role' );
 register_deactivation_hook( __FILE__, 'taskbook_remove_role' );
 
+
 /**
- * Add capabilites
+ * Add capabilities.
  */
-register_activation_hook( __FILE__, 'taskbook_add_capabilites' );
-register_deactivation_hook( __FILE__, 'taskbook_remove_capabilites' );
+register_activation_hook( __FILE__, 'taskbook_add_capabilities' );
+register_deactivation_hook( __FILE__, 'taskbook_remove_capabilities' );
 
 
 /**
