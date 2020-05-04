@@ -70,7 +70,7 @@ function taskbook_register_rest_api_box() {
 		'type'       => 'radio',
 		'options'    => array(
             '5' => esc_html__( 'Very relaxed', 'taskbook' ),
-            '4' => esc_html__( 'Somethat relaxed', 'taskbook' ),
+            '4' => esc_html__( 'Somewhat relaxed', 'taskbook' ),
             '3' => esc_html__( 'Neutral', 'taskbook' ),
             '2' => esc_html__( 'Somewhat stressed', 'taskbook' ),
             '1' => esc_html__( 'Very stressed', 'taskbook' ),
