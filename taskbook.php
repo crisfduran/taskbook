@@ -51,3 +51,28 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/status.php';
  * Register CMB2 metaboxes and fields.
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/CMB2-functions.php';
+
+/**
+ * Grant access to tasks only to authenticated users
+ * with either administrator or task logger roles.
+ */
+add_action( 'pre_get_posts', 'taskbook_grant_access' );
+
+function taskbook_grant_access( $query ) {
+
+    if ( isset($query->query_vars['post_type']) ) {
+
+        if ( $query->query_vars['post_type'] == 'task' ) {
+
+            if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+
+                if ( current_user_can( 'administrator') ) {
+                    $query->set( 'post_status', 'private' );
+                } elseif ( current_user_can( 'task_logger' ) ) {
+                    $query->set( 'post_status', 'private' );
+                    $query->set( 'author', get_current_user_id() );
+                }
+            }
+        }
+    }
+}
